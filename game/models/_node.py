@@ -33,7 +33,7 @@ class Node(NodeIterator):
         return NodeIterator(self)
 
     def __str__(self):
-        return '[ x: {X:10} | y: {Y:10} | parent: {P}]'.format(X=self.x, Y=self.y, P=self.parent)
+        return '[ x: {X:10} | y: {Y:10} |'.format(X=self.x, Y=self.y)
 
     def __len__(self):
         n = 0

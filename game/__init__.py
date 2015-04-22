@@ -1,6 +1,9 @@
 import game_logic
 import models
 
+GameLogic = game_logic.GameLogic
+NoPathFound = game_logic.NoPathsFound
+
 
 def generate_map(map_matrix):
     restricted = []
@@ -8,6 +11,7 @@ def generate_map(map_matrix):
     for y, row in enumerate(map_matrix):
         for x, node in enumerate(row):
             if not node:
+                # restricted.append(tuple(x, y))
                 restricted.append(models.Node(x=x, y=y))
 
     return models.Map(restricted_positions=restricted,
@@ -16,16 +20,16 @@ def generate_map(map_matrix):
 
 
 def get_position(x, y):
-    return models.Node(x=x, y=y)
+    return models.Node(x=x, y=y)   # models.Node(x=x, y=y)
 
 
 if __name__ == '__main__':
     from time import time
 
-    chess_map = [[True for _ in range(1000)] for _ in range(1000)]
+    chess_map = [[True for _ in range(10)] for _ in range(10)]
     gl = game_logic.GameLogic(chess_map=generate_map(chess_map),
-                              start=get_position(999, 0),
-                              finish=get_position(0, 999),
+                              start=get_position(9, 0),
+                              finish=get_position(0, 9),
                               figure=models.HorseFigure())
 
     start = time()
@@ -34,5 +38,5 @@ if __name__ == '__main__':
     except game_logic.NoPathsFound as e:
         print(e)
     print('Execution time {}'.format(str(time()-start)))
-    print(len(a)-1)
     print(a)
+    print(len(gl.queue))
