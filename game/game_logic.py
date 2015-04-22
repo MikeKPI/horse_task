@@ -3,6 +3,10 @@ class NoPathsFound(Exception):
 
 
 class GameLogic:
+    """
+    Class that implement all logic for problem solving. It implement
+    BFS algorithm for solving in play() method.
+    """
     def __init__(self, chess_map, start, finish, figure):
         self.queue = [start]
         self.visited = dict({start: start})
@@ -15,6 +19,11 @@ class GameLogic:
         return self
 
     def play(self):
+        """
+        This method implement BFS for horse task.
+        :return: finish node (Node object that contain all path to start node)
+        :raises: NoPathFound exception if path couldn't be found
+        """
         for node in self.queue:
             # print(node, self.finish)
             if node == self.finish:

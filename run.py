@@ -2,6 +2,7 @@ from time import time
 import xls_input
 import game
 
+script_start_time = time()
 
 data = xls_input.read()
 start = [data['start'][1]-data['tl_corner'][1],
@@ -17,12 +18,10 @@ gl = game.GameLogic(chess_map=game.generate_map(data['board']),
 start = time()
 try:
     a = gl.play()
-    print('Execution time {}'.format(str(time()-start)))
-    print(a)
+    print('Algorithm execution time {}'.format(str(time()-start)))
 except game.NoPathFound as e:
     print(e)
 
-for i in a:
-    print(i)
-
 xls_input.draw(a)
+
+print('Script execution time {}'.format(str(time()-script_start_time)))

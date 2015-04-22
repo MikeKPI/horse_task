@@ -2,6 +2,12 @@ from game.models import Node
 
 
 class ChessFigure:
+    """
+    Base class for all chess figures. Every child must implement __init__() method.
+    """
+    def __init__(self):
+        assert 'Cannot be created'
+
     def get_moves(self, position):
         """
         Method get figure position and returns all possible positions without

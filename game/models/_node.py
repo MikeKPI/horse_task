@@ -2,6 +2,9 @@ import hashlib
 
 
 class NodeIterator:
+    """
+    Start point of iteration for Node class and superclass that contains method __next__().
+    """
     def __init__(self, parent):
         self.parent = parent
 
@@ -38,7 +41,7 @@ class Node(NodeIterator):
         return NodeIterator(self)
 
     def __str__(self):
-        return '[ x: {X:10} | y: {Y:10} |'.format(X=self.x, Y=self.y)
+        return '[ x: {X:10} | y: {Y:10} ]'.format(X=self.x, Y=self.y)
 
     def __len__(self):
         n = 0
@@ -52,17 +55,6 @@ class Node(NodeIterator):
         # self._hash_function.update(bin(self.y).encode('utf-8'))
 
         return hash((self.x, self.y))
-
-    def check_steps(self, steps):
-        """
-        Node's checking operation for checking doubling.
-
-        :param steps: tuple of Node objects
-        :return: tuple of unique Nodes for this Node
-        """
-        for step in steps:
-            step.parent = self
-        return tuple(steps)
 
 
 if __name__ == '__main__':
