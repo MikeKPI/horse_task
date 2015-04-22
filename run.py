@@ -12,7 +12,7 @@ finish = [data['finish'][1]-data['tl_corner'][1],
 gl = game.GameLogic(chess_map=game.generate_map(data['board']),
                     start=game.get_position(start[0], start[1]),
                     finish=game.get_position(finish[0], finish[1]),
-                    figure=game.models.HorseFigure)
+                    figure=game.models.HorseFigure())
 
 start = time()
 try:

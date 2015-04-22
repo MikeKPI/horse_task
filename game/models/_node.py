@@ -1,3 +1,6 @@
+import hashlib
+
+
 class NodeIterator:
     def __init__(self, parent):
         self.parent = parent
@@ -17,7 +20,9 @@ class Node(NodeIterator):
     and the ancestor object (must be the same class). Also class implements
     NodeIterator class for iteration and can be used by instruction 'in'.
     """
+
     def __init__(self, x, y, parent=None):
+        self._hash_function = hashlib.md5()
         self.x = x
         self.y = y
         self.parent = parent
@@ -42,6 +47,12 @@ class Node(NodeIterator):
 
         return n
 
+    def __hash__(self):
+        # self._hash_function.update(bin(self.x).encode('utf-8'))
+        # self._hash_function.update(bin(self.y).encode('utf-8'))
+
+        return hash((self.x, self.y))
+
     def check_steps(self, steps):
         """
         Node's checking operation for checking doubling.
@@ -49,10 +60,9 @@ class Node(NodeIterator):
         :param steps: tuple of Node objects
         :return: tuple of unique Nodes for this Node
         """
-        tmp = [step for step in steps if step not in self]          # checks if step already used
-        for step in tmp:
+        for step in steps:
             step.parent = self
-        return tuple(tmp)
+        return tuple(steps)
 
 
 if __name__ == '__main__':

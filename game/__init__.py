@@ -1,5 +1,5 @@
-import game_logic
-import models
+from game import game_logic
+import game.models
 
 GameLogic = game_logic.GameLogic
 NoPathFound = game_logic.NoPathsFound

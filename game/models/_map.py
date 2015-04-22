@@ -4,7 +4,7 @@ class Map:
     Also it uses less memory than simple matrix that represents whole chess board.
     """
     def __init__(self, restricted_positions, max_x, max_y):
-        self.restricted_positions = restricted_positions
+        self.restricted_positions = dict(zip(restricted_positions, restricted_positions))
         self.max_x = max_x
         self.max_y = max_y
 
